@@ -31,11 +31,11 @@ jobs:
 
     - name: Run linting checks
       run: |
-        ruff format --check .
-        ruff check .
+        uv run ruff format --check .
+        uv run ruff check .
 
     - name: Run tests
       run: |
-        pytest tests/ -v
+        uv run pytest tests/ -v
       env:
         LLAMA_API_KEY: ${{ secrets.LLAMA_API_KEY }}
