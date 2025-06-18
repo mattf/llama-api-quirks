@@ -4,7 +4,6 @@ This file verifies that the Llama API's compatibility endpoint works with LangCh
 standard test classes.
 """
 
-import pytest
 from langchain_core.language_models import BaseChatModel
 from langchain_openai import ChatOpenAI
 from langchain_tests.integration_tests import ChatModelIntegrationTests
@@ -23,17 +22,11 @@ class TestLangChainStandard(ChatModelIntegrationTests):
 
     @property
     def chat_model_params(self) -> dict:
-        # Get the API key from environment
-        import os
-
-        from conftest import get_llama_model
-
-        api_key = os.environ.get("LLAMA_API_KEY")
-        if api_key is None:
-            pytest.skip("LLAMA_API_KEY environment variable not set")
+        # Using relative import for conftest functions
+        from conftest import get_llama_api_key, get_llama_model
 
         return {
             "model": get_llama_model(),
             "base_url": "https://api.llama.com/compat/v1",
-            "api_key": api_key,
+            "api_key": get_llama_api_key(),
         }

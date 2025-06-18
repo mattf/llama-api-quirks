@@ -8,6 +8,14 @@ def get_llama_model():
     return os.environ.get("LLAMA_MODEL", "Llama-3.3-8B-Instruct")
 
 
+def get_llama_api_key():
+    """Helper function to get the Llama API key from environment variables."""
+    api_key = os.environ.get("LLAMA_API_KEY", None)
+    if api_key is None:
+        pytest.skip("LLAMA_API_KEY environment variable not set")
+    return api_key
+
+
 @pytest.fixture
 def api_base_url():
     """Fixture to provide the Llama API base URL."""
@@ -17,10 +25,7 @@ def api_base_url():
 @pytest.fixture
 def api_key():
     """Fixture to provide the Llama API key."""
-    api_key = os.environ.get("LLAMA_API_KEY", None)
-    if api_key is None:
-        pytest.skip("LLAMA_API_KEY environment variable not set")
-    return api_key
+    return get_llama_api_key()
 
 
 @pytest.fixture
