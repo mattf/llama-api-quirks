@@ -25,15 +25,17 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         python -m pip install uv
+        uv venv
+        source .venv/bin/activate
         uv pip install -e ".[dev]"
 
     - name: Run linting checks
       run: |
-        uv run ruff format --check .
-        uv run ruff check .
+        ruff format --check .
+        ruff check .
 
     - name: Run tests
       run: |
-        uv run pytest tests/ -v
+        pytest tests/ -v
       env:
         LLAMA_API_KEY: ${{ secrets.LLAMA_API_KEY }}
