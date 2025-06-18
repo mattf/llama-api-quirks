@@ -10,8 +10,13 @@ from langchain_openai import ChatOpenAI
 from langchain_tests.integration_tests import ChatModelIntegrationTests
 
 
-@pytest.mark.asyncio
 class TestLangChainStandard(ChatModelIntegrationTests):
+    """
+    Test class for LangChain models with LLama API.
+    Note: The asyncio mark is intentionally NOT applied to the class to prevent
+    non-async methods from getting the mark.
+    """
+
     @property
     def chat_model_class(self) -> type[BaseChatModel]:
         return ChatOpenAI
