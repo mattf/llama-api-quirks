@@ -3,6 +3,11 @@ import os
 import pytest
 
 
+def get_llama_model():
+    """Helper function to get the Llama model name from environment variables."""
+    return os.environ.get("LLAMA_MODEL", "Llama-3.3-8B-Instruct")
+
+
 @pytest.fixture
 def api_base_url():
     """Fixture to provide the Llama API base URL."""
@@ -27,7 +32,7 @@ def auth_headers(api_key):
 @pytest.fixture
 def model():
     """Fixture to provide the model under test."""
-    return os.environ.get("LLAMA_MODEL", "Llama-3.3-8B-Instruct")
+    return get_llama_model()
 
 
 @pytest.fixture

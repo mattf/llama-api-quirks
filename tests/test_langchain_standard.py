@@ -26,14 +26,14 @@ class TestLangChainStandard(ChatModelIntegrationTests):
         # Get the API key from environment
         import os
 
+        from conftest import get_llama_model
+
         api_key = os.environ.get("LLAMA_API_KEY")
         if api_key is None:
             pytest.skip("LLAMA_API_KEY environment variable not set")
 
-        model = os.environ.get("LLAMA_MODEL", "Llama-3.3-8B-Instruct")
-
         return {
-            "model": model,
+            "model": get_llama_model(),
             "base_url": "https://api.llama.com/compat/v1",
             "api_key": api_key,
         }
