@@ -1,10 +1,10 @@
 repos:
 -   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.3.3  # Use the latest version
+    rev: v0.12.0  # Match the installed version
     hooks:
-    -   id: ruff-format
-    -   id: ruff
+    -   id: ruff  # This is now the linting command (legacy alias)
         args: [--fix]
+    -   id: ruff-format  # This is for formatting
 
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0  # Use the latest version

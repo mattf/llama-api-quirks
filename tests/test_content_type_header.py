@@ -27,9 +27,9 @@ def test_form_urlencoded_content_type_error(api_base_url, auth_headers, model, b
 
     # Verify error response structure
     response_body = response.json()
-    assert (
-        "error" in response_body or "title" in response_body
-    ), "Response should contain error information"
+    assert "error" in response_body or "title" in response_body, (
+        "Response should contain error information"
+    )
 
     # Print error for debugging
     print(f"Error response for form-urlencoded Content-Type: {response_body}")
@@ -60,9 +60,9 @@ def test_compat_form_urlencoded_content_type_error(
 
     # Verify error response structure
     response_body = response.json()
-    assert (
-        "error" in response_body or "title" in response_body
-    ), "Response should contain error information"
+    assert "error" in response_body or "title" in response_body, (
+        "Response should contain error information"
+    )
 
     # Print error for debugging
     print(f"Error response for form-urlencoded Content-Type in compat API: {response_body}")

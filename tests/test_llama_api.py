@@ -19,9 +19,9 @@ def test_chat_completions_basic_request(api_base_url, auth_headers, model, basic
     response = requests.post(url, headers=headers, data=json.dumps(payload))
 
     # Assertions
-    assert (
-        response.status_code == 200
-    ), f"Expected status code 200, got {response.status_code} in {response.text}"
+    assert response.status_code == 200, (
+        f"Expected status code 200, got {response.status_code} in {response.text}"
+    )
 
     response_body = response.json()
 
@@ -35,9 +35,9 @@ def test_chat_completions_basic_request(api_base_url, auth_headers, model, basic
     elif "completion_message" in response_body:
         # Custom format used by some Llama API providers
         assert "content" in response_body["completion_message"], "Response should contain content"
-        assert (
-            "text" in response_body["completion_message"]["content"]
-        ), "Content should include text"
+        assert "text" in response_body["completion_message"]["content"], (
+            "Content should include text"
+        )
         assert response_body["completion_message"]["content"]["text"], "Text should not be empty"
     else:
         pytest.fail(f"Unexpected response format: {response_body}")
@@ -58,9 +58,9 @@ def test_compat_chat_completions_basic_request(api_base_url, auth_headers, model
     response = requests.post(url, headers=headers, data=json.dumps(payload))
 
     # Assertions
-    assert (
-        response.status_code == 200
-    ), f"Expected status code 200, got {response.status_code} in {response.text}"
+    assert response.status_code == 200, (
+        f"Expected status code 200, got {response.status_code} in {response.text}"
+    )
 
     response_body = response.json()
     assert "choices" in response_body, "Response should contain 'choices'"
